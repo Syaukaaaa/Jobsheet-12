@@ -1,15 +1,34 @@
 import java.util.Scanner;
-// Saya Izin pakai command line biar memudahkan pada saaat membaca alurnya ibu 
+// Izin memakai Command line agar gampang memahami alurnya ibu
 public class RekapPenjualanCafeNoAbsen {
-    // Pembuatan Array 2D
-    String[] namaMenu = {"Kopi", "Teh", "Es Kelapa Muda", "Roti Bakar", "Gorengan"};
-    int[][] penjualan = new int[5][7];
-    int JUMLAH_MENU = 5;
-    int JUMLAH_HARI = 7;
 
-    // input data penjualan (array 2D)
+    String[] namaMenu;   
+    int[][] penjualan;   
+    int JUMLAH_MENU;
+    int JUMLAH_HARI;
+
+    //input jumlah menu, jumlah hari, nama menu, dan penjualan
     void inputDataPenjualan() {
         Scanner sc = new Scanner(System.in);
+
+        // Input jumlah menu dan jumlah hari
+        System.out.print("Masukkan jumlah menu: ");
+        JUMLAH_MENU = sc.nextInt();
+        System.out.print("Masukkan jumlah hari: ");
+        JUMLAH_HARI = sc.nextInt();
+
+        // Membuat array sesuai input pengguna
+        namaMenu = new String[JUMLAH_MENU];
+        penjualan = new int[JUMLAH_MENU][JUMLAH_HARI];
+
+        // Input menu
+        sc.nextLine(); 
+        for (int i = 0; i < JUMLAH_MENU; i++) {
+            System.out.print("Masukkan nama menu ke-" + (i + 1) + ": ");
+            namaMenu[i] = sc.nextLine();
+        }
+
+        // Input penjualan menu per hari
         for (int i = 0; i < JUMLAH_MENU; i++) {
             System.out.println("Masukkan penjualan untuk menu: " + namaMenu[i]);
             for (int j = 0; j < JUMLAH_HARI; j++) {
@@ -19,19 +38,17 @@ public class RekapPenjualanCafeNoAbsen {
         }
     }
 
-    // menampilkan seluruh data penjualan dalam bentuk tabel
+    //data penjualan dalam bentuk tabel
     void tampilkanSemuaData() {
-        // Header tabel
         System.out.print("Menu\t\t");
         for (int h = 1; h <= JUMLAH_HARI; h++) {
             System.out.print("H" + h + "\t");
         }
         System.out.println();
 
-        // Data per menu
         for (int i = 0; i < JUMLAH_MENU; i++) {
             System.out.print(namaMenu[i] + "\t");
-            if (namaMenu[i].length() < 8) System.out.print("\t"); // tambahan tab agar rapi
+            if (namaMenu[i].length() < 8) System.out.print("\t"); 
             for (int j = 0; j < JUMLAH_HARI; j++) {
                 System.out.print(penjualan[i][j] + "\t");
             }
@@ -39,7 +56,7 @@ public class RekapPenjualanCafeNoAbsen {
         }
     }
 
-    // menu dengan total penjualan tertinggi
+    //menu dengan total penjualan tertinggi
     void tampilkanMenuTertinggi() {
         int indeksTertinggi = 0;
         int totalTertinggi = 0;
@@ -58,7 +75,7 @@ public class RekapPenjualanCafeNoAbsen {
         System.out.println("Total penjualan: " + totalTertinggi);
     }
 
-    // rata-rata penjualan untuk setiap menu selama 7 hari
+    // Menampilkan rata-rata penjualan setiap menu
     void tampilkanRataRata() {
         System.out.println("\nRata-rata penjualan per menu:");
         for (int i = 0; i < JUMLAH_MENU; i++) {
